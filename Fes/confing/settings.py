@@ -1,15 +1,15 @@
-import os
 from pathlib import Path
+import os
 
 from dotenv import load_dotenv
 
+load_dotenv()
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-load_dotenv(BASE_DIR / ".env")
-
-SECRET_KEY = os.getenv("SECRET_KEY")
+SECRET_KEY = os.getenv("SECRET_KEY", "django-insecure-change-me")
 DEBUG = os.getenv("DEBUG", "True") == "True"
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost").split(",")
+ALLOWED_HOSTS = ["*"]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -18,6 +18,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+     "apps.accounts",   #авторизация
+     "apps.catalog",    #каталог книг
+     "apps.clients",    #читатели (покупатели)
+     "apps.orders",     #заказы
+     "apps.reports",    #отчеты
+
 ]
 
 MIDDLEWARE = [
@@ -38,6 +45,7 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'django.template.context_processore.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
@@ -51,13 +59,22 @@ WSGI_APPLICATION = 'confing.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv("POSTGRES_DB"),
-        'USER': os.getenv("POSTGRES_USER"),
-        'PASSWORD': os.getenv("POSTGRES_PaSSWORD"),
-        'HOST': os.getenv("POSTGRES_HOST"),
-        'PORT': os.getenv("POSTGRES_PORT"),
+        'NAME': os.getenv("DB_NAME", "library_bd"),
+        'USER': os.getenv("DB_USER", "librery"),
+        'PASSWORD': os.getenv("DB_PASSWORD", "library_pass"),
+        'HOST': os.getenv("DB_HOST", "localhost"),
+        'PORT': os.getenv("DB_PORT", "5432"),
     }
 }
+
+AUTH_USER_MODEL = "accounts.User"
+
+AUTH_PASSWORD_VALIDATOR = [
+    {"NAME":"django.contrib.auth.password_validator.UserAttributeSimilarityValidator"},
+    {"NAME":"django.contrib.auth.password_validator."},
+    {"NAME":"django.contrib.auth.password_validator."},
+    {"NAME":"django.contrib.auth.password_validator."},
+]
 
 CACHES = {
     'default': {
