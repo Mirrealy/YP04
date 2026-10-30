@@ -59,9 +59,9 @@ WSGI_APPLICATION = 'confing.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv("DB_NAME", "library_bd"),
-        'USER': os.getenv("DB_USER", "librery"),
-        'PASSWORD': os.getenv("DB_PASSWORD", "library_pass"),
+        'NAME': os.getenv("DB_NAME", "fes"),
+        'USER': os.getenv("DB_USER", "fes"),
+        'PASSWORD': os.getenv("DB_PASSWORD", "fes"),
         'HOST': os.getenv("DB_HOST", "localhost"),
         'PORT': os.getenv("DB_PORT", "5432"),
     }
