@@ -19,8 +19,8 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(max_length=255, verbose_name='Название')),
             ],
             options={
-                'verbose_name': 'Категория',
-                'verbose_name_plural': 'Категории',
+                'verbose_name': 'Жанр',
+                'verbose_name_plural': 'Жанр',
             },
         ),
         migrations.CreateModel(
@@ -41,21 +41,21 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(max_length=255, unique=True, verbose_name='Название')),
             ],
             options={
-                'verbose_name': 'Производитель',
-                'verbose_name_plural': 'Производители',
+                'verbose_name': 'Автор',
+                'verbose_name_plural': 'Автор',
             },
         ),
         migrations.CreateModel(
             name='Model',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=255, verbose_name='Модель')),
-                ('category', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='catalog.category', verbose_name='Категория')),
-                ('vendor', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='catalog.vendor', verbose_name='Производитель')),
+                ('name', models.CharField(max_length=255, verbose_name='Название')),
+                ('category', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='catalog.category', verbose_name='Жанр')),
+                ('vendor', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='catalog.vendor', verbose_name='Автор')),
             ],
             options={
-                'verbose_name': 'Модель',
-                'verbose_name_plural': 'Модели',
+                'verbose_name': 'Название',
+                'verbose_name_plural': 'Название',
             },
         ),
     ]

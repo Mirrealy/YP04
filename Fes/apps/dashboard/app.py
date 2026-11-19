@@ -6,8 +6,8 @@ import requests
 
 API_URL = os.getenv("API_URL", "http://localhost:8000")
 
-st.set_page_config(page_title="Автосалон — Аналитика", page_icon="📊", layout="wide")
-st.title("🚗 Автосалон — Панель руководителя")
+st.set_page_config(page_title="Библиотека — Аналитика", page_icon="📊", layout="wide")
+st.title("Библиотека — Панель руководителя")
 
 # === БОКОВАЯ ПАНЕЛЬ ===
 with st.sidebar:
@@ -59,10 +59,10 @@ if not revenue_df.empty:
 col1, col2 = st.columns(2)
 
 with col1:
-    st.header("🏆 Топ-5 моделей")
+    st.header("🏆 Топ-5 книг")
     top = load_top_models()
     if not top.empty:
-        fig = px.bar(top, x="count", y="model", color="brand", orientation="h")
+        fig = px.bar(top, x="count", y="name", color="author", orientation="h")
         st.plotly_chart(fig, use_container_width=True)
 
 with col2:

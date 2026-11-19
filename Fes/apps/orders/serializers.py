@@ -11,9 +11,9 @@ class OrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
         fields = [
-            "id", "client", "client_name", "car", "car_name",
-            "manager", "manager_name", "order_type", "order_type_display",
-            "total_amount", "status", "status_display",
-            "comment", "created_at", "completed_at",
+            "id", "author", "name", "year", "price",
+            "publishing_house", "page_count", "genre",
+            "popular", "status",
+            "ISBN", "description", "created_at",
         ]
         read_only_fields = ["manager", "created_at", "completed_at"]

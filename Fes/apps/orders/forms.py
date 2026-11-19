@@ -11,7 +11,7 @@ class OrderForm(forms.ModelForm):
         fields = ["client", "car", "order_type", "total_amount", "comment"]
         widgets = {
             "client": forms.Select(attrs={"class": "form-select"}),
-            "car": forms.Select(attrs={"class": "form-select"}),
+            "book": forms.Select(attrs={"class": "form-select"}),
             "order_type": forms.Select(attrs={"class": "form-select"}),
             "total_amount": forms.NumberInput(attrs={"class": "form-control"}),
             "comment": forms.Textarea(attrs={"class": "form-control", "rows": 3}),
@@ -21,5 +21,5 @@ class OrderForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         # Показываем только доступные авто
         from apps.catalog.models import Car
-        self.fields["car"].queryset = Car.objects.filter(status=Car.Status.AVAILABLE)
+        self.fields["book"].queryset = Car.objects.filter(status=Car.Status.AVAILABLE)
 

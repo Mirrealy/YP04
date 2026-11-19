@@ -14,9 +14,9 @@ class CarSerializer(serializers.ModelSerializer):
     class Meta:
         model = Car
         fields = [
-            "id", "brand", "brand_name", "model", "year", "price",
-            "color", "engine_volume", "fuel_type", "fuel_type_display",
-            "transmission", "mileage", "status", "status_display",
-            "vin", "description", "created_at",
+            "id", "author", "name", "year", "price",
+            "publishing_house", "page_count", "genre",
+            "popular", "status",
+            "ISBN", "description", "created_at",
         ]
         read_only_fields = ["created_at"]

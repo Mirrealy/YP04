@@ -5,11 +5,10 @@ from apps.catalog.models import Car
 from apps.clients.models import Client
 
 class Order(models.Model):
-    """Заказ: покупка, тест-драйв, сервис."""
+    """Заказ: покупка,сервис."""
 
     class OrderType(models.TextChoices):
         PURCHASE = "purchase", "Покупка"
-        TEST_DRIVE = "test_drive", "Тест-драйв"
         SERVICE = "service", "Сервис"
 
     class Status(models.TextChoices):
@@ -24,7 +23,7 @@ class Order(models.Model):
     )
     car = models.ForeignKey(
         Car, on_delete=models.PROTECT,
-        related_name="orders", verbose_name="Автомобиль",
+        related_name="orders", verbose_name="Книга",
     )
     manager = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.PROTECT,
@@ -47,7 +46,7 @@ class Order(models.Model):
 
     def save(self, *args, **kwargs):
         """
-        Каскад: при создании purchase — авто резервируется.
+        Каскад: при создании purchase — книга резервируется.
         """
         if not self.pk and self.order_type == self.OrderType.PURCHASE:
             if self.car.status == Car.Status.AVAILABLE:

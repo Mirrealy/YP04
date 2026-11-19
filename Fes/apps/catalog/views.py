@@ -12,7 +12,7 @@ from .serializers import BrandSerializer, CarSerializer
 
 
 class BrandViewSet(viewsets.ModelViewSet):
-    """CRUD для марок."""
+    """CRUD для авторов."""
     queryset = Brand.objects.all()
     serializer_class = BrandSerializer
     filter_backends = [filters.SearchFilter]
@@ -20,11 +20,11 @@ class BrandViewSet(viewsets.ModelViewSet):
 
 
 class CarViewSet(viewsets.ModelViewSet):
-    """CRUD для авто с фильтрами."""
-    queryset = Car.objects.select_related("brand").all()
+    """CRUD для книг с фильтрами."""
+    queryset = Car.objects.select_related("author").all()
     serializer_class = CarSerializer
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
-    filterset_fields = ["brand", "status", "fuel_type", "year"]
-    search_fields = ["model", "vin", "brand__name"]
+    filterset_fields = ["author", "status", "genre", "year"]
+    search_fields = ["name", "ISBN", "author"]
     ordering_fields = ["price", "year", "created_at"]
 

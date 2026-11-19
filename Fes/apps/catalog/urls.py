@@ -10,7 +10,7 @@ class BrandAdmin(admin.ModelAdmin):
 
 @admin.register(Car)
 class CarAdmin(admin.ModelAdmin):
-    list_display = ("brand", "model", "year", "price", "status", "mileage")
-    list_filter = ("brand", "status", "fuel_type", "year")
-    search_fields = ("model", "vin")
+    list_display = ("author", "name", "year", "price", "status", "popular")
+    list_filter = ("author", "status", "genre", "year")
+    search_fields = ("model", "ISBN")
     list_editable = ("status",)
